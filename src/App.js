@@ -1,20 +1,16 @@
 import './App.css';
+import Navbar from "./Navbar";
+import Home from "./Home";
+import Footer from "./Footer";
 
 function App() {
-  const title = "Welcome here";
-  const likes = 50;
-  const link = "https://zubs.github.io";
-
   return (
     <div className="App">
+      <Navbar />
       <div className="content">
-        <h1>{ title }</h1>
-        <p>Liked by { likes } people as at { (new Date()).toDateString() }</p>
-        <br/>
-        <br/>
-        <br/>
-        <p>Built by <a href={ link } target="_blank">me</a></p>
+        <Home />
       </div>
+      <Footer />
     </div>
   );
 }
