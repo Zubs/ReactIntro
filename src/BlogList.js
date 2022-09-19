@@ -8,7 +8,7 @@ const BlogList = (props) => { // props can be named anything
 			{ blogs.map((blog) => (
 				<div className="blog-preview" key={ blog.id }>
 					<h2>{ blog.title }</h2>
-					<p>Author: { blog.author }</p>
+					<p>Author: { blog?.user?.name }</p>
 					<button onClick={ () => deleteBlog(blog.id) }>Delete</button>
 				</div>
 			)) }
