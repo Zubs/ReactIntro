@@ -1,30 +1,36 @@
 import { useState } from "react";
 
-const titles = [
-	"Welcome here",
-	"Hello there!",
-	"Howdy, partner",
-	"What's popping bruv"
-];
-
 const Home = () => {
 
-	const [
-		title, // This is the reactive variable
-		setTitle // This method is used to set/update it
-	] = useState(titles[0]); // useState takes an initial state. In typescript, the type of the variable can be inferred from this initial state
-
-	const [clicks, setClicks] = useState(0);
-
-	function clickResponse() {
-		setClicks(clicks + 1);
-		setTitle(titles[Math.floor(Math.random() * titles.length)]);
-	}
+	const [blogs, setBlogs] = useState([
+		{
+			title: 'Post 1',
+			body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur cumque dignissimos officia quia quisquam sint! Ad distinctio eum harum.',
+			author: 'Zubs',
+			id: 1
+		},
+		{
+			title: 'Post 2',
+			body: 'laboriosam minus quas repellat, voluptatem. Eos magnam pariatur sint suscipit.',
+			author: 'Young',
+			id: 2
+		},
+		{
+			title: 'Post 3',
+			body: 'laboriosam minus quas repellat, voluptatem. Eos magnam pariatur sint suscipit.',
+			author: 'Zubs',
+			id: 3
+		}
+	]);
 
 	return (
 		<div className="home">
-			<h1>{ title }</h1> {/*Using the reactive variable here*/}
-			<button onClick={clickResponse}>Change Title</button> <small>Clicked { clicks } time(s)</small>
+			{ blogs.map((blog) => (
+				<div className="blog-preview" key={ blog.id }>
+					<h2>{ blog.title }</h2>
+					<p>Author: { blog.author }</p>
+				</div>
+			)) }
 		</div>
 	);
 }
