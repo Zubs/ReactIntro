@@ -4,11 +4,15 @@ import BlogList from "./BlogList";
 const Home = () => {
 
 	const [blogs, setBlogs] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/posts')
 			.then(response => response.json())
-			.then(json => setBlogs(json))
+			.then(data => {
+				setBlogs(data);
+				setLoading(false);
+			})
 	}, []);
 
 	const deleteBlog = (id) => {
@@ -19,6 +23,10 @@ const Home = () => {
 
 	return (
 		<div className="home">
+			{
+				loading &&
+				<div>Loading...</div>
+			}
 			{
 				blogs &&
 				<BlogList
