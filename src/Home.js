@@ -5,14 +5,23 @@ const Home = () => {
 
 	const [blogs, setBlogs] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/posts')
-			.then(response => response.json())
+			.then(response => {
+				if (response.status !== 200 && response.status !== 304) throw new Error('Unable to load posts');
+				return response.json()
+			})
 			.then(data => {
 				setBlogs(data);
 				setLoading(false);
+				setError(null);
 			})
+			.catch((error) => {
+				setLoading(false);
+				setError(error.message);
+			});
 	}, []);
 
 	const deleteBlog = (id) => {
@@ -23,10 +32,8 @@ const Home = () => {
 
 	return (
 		<div className="home">
-			{
-				loading &&
-				<div>Loading...</div>
-			}
+			{ loading && <div>Loading...</div> }
+			{ error && <div>{ error }</div> }
 			{
 				blogs &&
 				<BlogList

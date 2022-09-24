@@ -8,7 +8,7 @@ const BlogItem = (props) => {
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/users/' + blog.userId)
 			.then(response => response.json())
-			.then(json => setAuthor(json))
+			.then(json => setAuthor(json));
 	}, [blog.userId]);
 
 	return (
