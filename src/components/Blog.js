@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 const Blog = () => {
@@ -13,6 +13,15 @@ const Blog = () => {
 		loading: authorLoading,
 		error: authorError
 	} = useFetch(`https://jsonplaceholder.typicode.com/users/${ blog.userId }`);
+	const navigateFunction = useNavigate();
+
+	const deleteBlog = () => {
+		fetch(`https://jsonplaceholder.typicode.com/posts/${ id }`, {
+			method: 'DELETE'
+		})
+			.then((res) => res.json())
+			.then(() => navigateFunction('/'));
+	}
 
 	return (
 		<div className="blog-details">
@@ -26,6 +35,7 @@ const Blog = () => {
 						<p>Author: { authorLoading ? <i>loading... </i> : author.name }</p>
 					}
 					<div>{ blog.body }</div>
+					<button onClick={ deleteBlog }>Delete</button>
 				</article>
 			}
 		</div>
