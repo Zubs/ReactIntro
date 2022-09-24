@@ -1,5 +1,5 @@
 import BlogList from "./BlogList";
-import useFetch from "./useFetch";
+import useFetch from "../hooks/useFetch";
 
 const Home = () => {
 	const { data: blogs, loading, error } = useFetch('https://jsonplaceholder.typicode.com/posts');
