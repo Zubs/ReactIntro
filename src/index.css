@@ -125,3 +125,12 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+.new-blog button:disabled {
+    background: #f2f2f2;
+    color: black;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}

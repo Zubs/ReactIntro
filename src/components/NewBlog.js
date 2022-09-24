@@ -6,11 +6,33 @@ const NewBlog = () => {
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
 	const [author, setAuthor] = useState('1');
+	const [postLoading, setPostLoading] = useState(false);
+
+	const submitPost = (event) => {
+		event.preventDefault();
+
+		setPostLoading(true);
+
+		const blog = { title, body, userId: author };
+
+		fetch('https://jsonplaceholder.typicode.com/posts/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(blog)
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				setPostLoading(false);
+				console.log(res)
+			});
+	}
 
 	return (
 		<div className="new-blog">
 			<h2>Add A New Blog</h2>
-			<form>
+			<form onSubmit={ submitPost }>
 				<label>Title</label>
 				<input
 					type="text"
@@ -28,7 +50,7 @@ const NewBlog = () => {
 
 				<label>Author</label>
 				<select
-					disabled={ !!error || !!loading }
+					disabled={ !!error || loading }
 					onChange={ (event) => setAuthor(event.target.value) }
 					value={ author }
 					required
@@ -40,7 +62,7 @@ const NewBlog = () => {
 					}
 				</select>
 
-				<button>Add Blog</button>
+				<button disabled={ postLoading }>{ postLoading ? 'loading... ' : 'Add Blog' }</button>
 			</form>
 		</div>
 	);
