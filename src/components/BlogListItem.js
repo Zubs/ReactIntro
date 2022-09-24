@@ -7,7 +7,7 @@ const BlogListItem = (props) => {
 
 	return (
 		<div className="blog-preview">
-			<Link to={ `/${ blog.id }` }>
+			<Link to={ `blog/${ blog.id }` }>
 				<h2>{ blog.title }</h2>
 				{ error ?
 					<div className="fetch-error">{ error }</div> :

@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NewBlog from "./NewBlog";
 import Blog from "./Blog";
+import NotFound from "./NotFound";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={ <Home /> } />
             <Route path="/create" element={ <NewBlog /> } />
-            <Route path="/:id" element={ <Blog /> } />
+            <Route path="/blog/:id" element={ <Blog /> } />
+            <Route path="*" element={ <NotFound /> } />
           </Routes>
         </div>
         <Footer />
