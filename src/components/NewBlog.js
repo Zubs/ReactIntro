@@ -1,5 +1,6 @@
 import useFetch from "../hooks/useFetch";
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NewBlog = () => {
 	const { data: authors, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users/');
@@ -7,6 +8,8 @@ const NewBlog = () => {
 	const [body, setBody] = useState('');
 	const [author, setAuthor] = useState('1');
 	const [postLoading, setPostLoading] = useState(false);
+
+	const navigateFunction = useNavigate();
 
 	const submitPost = (event) => {
 		event.preventDefault();
@@ -23,9 +26,9 @@ const NewBlog = () => {
 			body: JSON.stringify(blog)
 		})
 			.then((res) => res.json())
-			.then((res) => {
+			.then(() => {
 				setPostLoading(false);
-				console.log(res)
+				navigateFunction('/');
 			});
 	}
 
