@@ -1,6 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import {BlogDetailsButton, BlogDetailsContent, BlogDetailsDiv, BlogDetailsHeader, FetchError} from "./styles/Styles";
+import {
+	BlogDetailsContent,
+	BlogDetailsDiv,
+	BlogDetailsHeader,
+	Button,
+	FetchError
+} from "./styles/Styles";
 
 const Blog = () => {
 	const { id } = useParams();
@@ -36,7 +42,7 @@ const Blog = () => {
 						<p>Author: { authorLoading ? <i>loading... </i> : author.name }</p>
 					}
 					<BlogDetailsContent>{ blog.body }</BlogDetailsContent>
-					<BlogDetailsButton onClick={ deleteBlog }>Delete</BlogDetailsButton>
+					<Button onClick={ deleteBlog }>Delete</Button>
 				</article>
 			}
 		</BlogDetailsDiv>

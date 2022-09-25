@@ -1,6 +1,28 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
+const Header = styled.h2`
+  font-size: 20px;
+  color: ${ (props) => props.theme.light.primary };
+`;
+
+const WideDiv = styled.div`
+  max-width: 600px;
+`;
+
+export const Button = styled.button`
+  background: ${ (props) => props.theme.light.primary };
+  color: ${ (props) => props.theme.light.secondary };
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 export const NavBar = styled.nav`
   padding: 20px;
   display: flex;
@@ -18,9 +40,8 @@ export const NavBarLinks = styled.div`
   margin-left: auto;
 `;
 
-export const NavBarLink = styled(Link)`
+export const NavBarLink = styled(StyledLink)`
   margin-left: 16px;
-  text-decoration: none;
   padding: 6px;
 	
 	&:hover {
@@ -28,8 +49,7 @@ export const NavBarLink = styled(Link)`
 	}
 `;
 
-export const ContentDiv = styled.div`
-  max-width: 600px;
+export const ContentDiv = styled(WideDiv)`
   margin: 40px auto;
   padding: 20px;
 `;
@@ -49,18 +69,11 @@ export const BlogPreview = styled.div`
 	}
 `;
 
-export const BlogPreviewLink = styled(Link)`
-  text-decoration: none;
-`;
-
-export const BlogPreviewHeader = styled.h2`
-  font-size: 20px;
-  color: ${ (props) => props.theme.light.primary };
+export const BlogPreviewHeader = styled(Header)`
   margin-bottom: 8px;
 `;
 
-export const NewBlogDiv = styled.div`
-  max-width: 600px;
+export const NewBlogDiv = styled(WideDiv)`
   margin: 0 auto;
   text-align: center;
 `;
@@ -70,9 +83,7 @@ export const NewBlogLabel = styled.label`
   display: block;
 `;
 
-export const NewBlogHeader = styled.h2`
-  font-size: 20px;
-  color: ${ (props) => props.theme.light.primary };
+export const NewBlogHeader = styled(Header)`
   margin-bottom: 30px;
 `;
 
@@ -103,13 +114,7 @@ export const NewBlogSelect = styled.select`
   display: block;
 `;
 
-export const NewBlogButton = styled.button`
-  background: ${ (props) => props.theme.light.primary };
-  color: ${ (props) => props.theme.light.secondary };
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
+export const NewBlogButton = styled(Button)`
 	width: 100%;
 	
 	&:disabled {
@@ -124,23 +129,12 @@ export const NewBlogButton = styled.button`
 
 export const BlogDetailsDiv = styled.div``;
 
-export const BlogDetailsHeader = styled.h2`
-  font-size: 20px;
-  color: ${ (props) => props.theme.light.primary };
+export const BlogDetailsHeader = styled(Header)`
   margin-bottom: 10px;
 `;
 
 export const BlogDetailsContent = styled.div`
   margin: 20px 0;
-`;
-
-export const BlogDetailsButton = styled.button`
-  background: ${ (props) => props.theme.light.primary };
-  color: ${ (props) => props.theme.light.secondary };
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
 `;
 
 export const Footer = styled.footer`

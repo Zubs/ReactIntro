@@ -1,5 +1,5 @@
 import useFetch from "../hooks/useFetch";
-import { BlogPreview, BlogPreviewHeader, BlogPreviewLink, FetchError } from "./styles/Styles";
+import { BlogPreview, BlogPreviewHeader, FetchError, StyledLink } from "./styles/Styles";
 
 const BlogListItem = (props) => {
 	const { blog } = props;
@@ -7,13 +7,13 @@ const BlogListItem = (props) => {
 
 	return (
 		<BlogPreview>
-			<BlogPreviewLink to={ `blog/${ blog.id }` }>
+			<StyledLink to={ `blog/${ blog.id }` }>
 				<BlogPreviewHeader>{ blog.title }</BlogPreviewHeader>
 				{ error ?
 					<FetchError>{ error }</FetchError> :
 					<p>Author: { loading ? <i>loading... </i> : author.name }</p>
 				}
-			</BlogPreviewLink>
+			</StyledLink>
 		</BlogPreview>
 	);
 };
