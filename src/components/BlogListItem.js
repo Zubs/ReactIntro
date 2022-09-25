@@ -1,20 +1,20 @@
 import useFetch from "../hooks/useFetch";
-import {Link} from "react-router-dom";
+import { BlogPreview, BlogPreviewHeader, BlogPreviewLink, FetchError } from "./styles/Styles";
 
 const BlogListItem = (props) => {
 	const { blog } = props;
 	const { data: author, loading, error } = useFetch(`https://jsonplaceholder.typicode.com/users/${ blog.userId }`);
 
 	return (
-		<div className="blog-preview">
-			<Link to={ `blog/${ blog.id }` }>
-				<h2>{ blog.title }</h2>
+		<BlogPreview>
+			<BlogPreviewLink to={ `blog/${ blog.id }` }>
+				<BlogPreviewHeader>{ blog.title }</BlogPreviewHeader>
 				{ error ?
-					<div className="fetch-error">{ error }</div> :
+					<FetchError>{ error }</FetchError> :
 					<p>Author: { loading ? <i>loading... </i> : author.name }</p>
 				}
-			</Link>
-		</div>
+			</BlogPreviewLink>
+		</BlogPreview>
 	);
 };
 

@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { NavBar, NavBarHeader, NavBarLink, NavBarLinks } from "./styles/Styles";
 
 const Navbar = () => {
 	return (
-		<nav className="navbar">
-			<h1>The Zubs Blog</h1>
-			<div className="links">
-				<Link to="/">Home</Link>
-				<Link to="/create">New Blog</Link>
-			</div>
-		</nav>
+		<NavBar>
+			<NavBarHeader>The Zubs Blog</NavBarHeader>
+			<NavBarLinks>
+				<NavBarLink to="/">Home</NavBarLink>
+				<NavBarLink to="/create">New Blog</NavBarLink>
+			</NavBarLinks>
+		</NavBar>
 	);
 }
 

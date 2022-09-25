@@ -1,14 +1,16 @@
+import { Footer as FooterDiv } from "./styles/Styles";
+
 const link = "https://zubs.github.io";
 
 const Footer = () => {
 	return (
-		<footer className="footer">
+		<FooterDiv>
 			<p>Built by <a
 				href={ link }
 				target="_blank"
 				rel="noreferrer"
 			>me</a></p>
-		</footer>
+		</FooterDiv>
 	);
 }
 

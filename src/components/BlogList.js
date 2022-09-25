@@ -4,7 +4,7 @@ const BlogList = (props) => {
 	const { blogs, title } = props;
 
 	return (
-		<div className="blog-list">
+		<div>
 			<h2>{ title }</h2>
 			{ blogs.map((blog) => (
 				<BlogListItem blog={ blog } key={ blog.id } />
