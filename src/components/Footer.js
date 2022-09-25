@@ -1,4 +1,4 @@
-import { Footer as FooterDiv } from "./styles/Styles";
+import { Footer as FooterDiv } from "./styles/Main.styles";
 
 const link = "https://zubs.github.io";
 

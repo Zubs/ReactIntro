@@ -1,4 +1,9 @@
-import { NavBar, NavBarHeader, NavBarLink, NavBarLinks } from "./styles/Styles";
+import {
+	NavBar,
+	NavBarHeader,
+	NavBarLink,
+	NavBarLinks
+} from "./styles/Navbar.styles";
 
 const Navbar = () => {
 	return (

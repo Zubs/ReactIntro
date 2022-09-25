@@ -6,7 +6,7 @@ import NewBlog from "./NewBlog";
 import Blog from "./Blog";
 import NotFound from "./NotFound";
 import { ThemeProvider } from "styled-components";
-import { ContentDiv } from "./styles/Styles";
+import { ContentDiv } from "./styles/Main.styles";
 
 const defaultTheme = {
   error: 'red',

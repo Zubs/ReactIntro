@@ -1,5 +1,6 @@
 import useFetch from "../hooks/useFetch";
-import { BlogPreview, BlogPreviewHeader, FetchError, StyledLink } from "./styles/Styles";
+import { FetchError, StyledLink } from "./styles/Main.styles";
+import { BlogPreview, BlogPreviewHeader } from "./styles/BlogListItem.styles";
 
 const BlogListItem = (props) => {
 	const { blog } = props;

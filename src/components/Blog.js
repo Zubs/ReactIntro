@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { Button, FetchError } from "./styles/Main.styles";
 import {
 	BlogDetailsContent,
 	BlogDetailsDiv,
-	BlogDetailsHeader,
-	Button,
-	FetchError
-} from "./styles/Styles";
+	BlogDetailsHeader
+} from "./styles/Blog.styles";
 
 const Blog = () => {
 	const { id } = useParams();

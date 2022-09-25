@@ -9,7 +9,7 @@ import {
 	NewBlogLabel,
 	NewBlogSelect,
 	NewBlogTextarea
-} from "./styles/Styles";
+} from "./styles/NewBlog.styles";
 
 const NewBlog = () => {
 	const { data: authors, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users/');
