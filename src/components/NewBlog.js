@@ -1,6 +1,15 @@
 import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+	NewBlogButton,
+	NewBlogDiv,
+	NewBlogHeader,
+	NewBlogInput,
+	NewBlogLabel,
+	NewBlogSelect,
+	NewBlogTextarea
+} from "./styles/NewBlog.styles";
 
 const NewBlog = () => {
 	const { data: authors, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users/');
@@ -33,26 +42,26 @@ const NewBlog = () => {
 	}
 
 	return (
-		<div className="new-blog">
-			<h2>Add A New Blog</h2>
+		<NewBlogDiv>
+			<NewBlogHeader>Add A New Blog</NewBlogHeader>
 			<form onSubmit={ submitPost }>
-				<label>Title</label>
-				<input
+				<NewBlogLabel>Title</NewBlogLabel>
+				<NewBlogInput
 					type="text"
 					required
 					value={ title }
 					onChange={ (event) => setTitle(event.target.value) }
 				/>
 
-				<label>Body</label>
-				<textarea
+				<NewBlogLabel>Body</NewBlogLabel>
+				<NewBlogTextarea
 					required
 					value={ body }
 					onChange={ (event) => setBody(event.target.value) }
-				></textarea>
+				></NewBlogTextarea>
 
-				<label>Author</label>
-				<select
+				<NewBlogLabel>Author</NewBlogLabel>
+				<NewBlogSelect
 					disabled={ !!error || loading }
 					onChange={ (event) => setAuthor(event.target.value) }
 					value={ author }
@@ -63,11 +72,11 @@ const NewBlog = () => {
 							<option value={ author.id } key={ author.id }>{ author.name }</option>
 						))
 					}
-				</select>
+				</NewBlogSelect>
 
-				<button disabled={ postLoading }>{ postLoading ? 'loading... ' : 'Add Blog' }</button>
+				<NewBlogButton disabled={ postLoading }>{ postLoading ? 'loading... ' : 'Add Blog' }</NewBlogButton>
 			</form>
-		</div>
+		</NewBlogDiv>
 	);
 }
 

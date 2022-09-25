@@ -1,5 +1,11 @@
-import {useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { Button, FetchError } from "./styles/Main.styles";
+import {
+	BlogDetailsContent,
+	BlogDetailsDiv,
+	BlogDetailsHeader
+} from "./styles/Blog.styles";
 
 const Blog = () => {
 	const { id } = useParams();
@@ -24,21 +30,21 @@ const Blog = () => {
 	}
 
 	return (
-		<div className="blog-details">
+		<BlogDetailsDiv>
 			{ postLoading ? <i>loading... </i> : null }
 			{ postError ?
-				<div className="fetch-error">{ postError }</div> :
+				<FetchError>{ postError }</FetchError> :
 				<article>
-					<h2>{ blog.title }</h2>
+					<BlogDetailsHeader>{ blog.title }</BlogDetailsHeader>
 					{ authorError ?
-						<div className="fetch-error">{ authorError }</div> :
+						<FetchError>{ authorError }</FetchError> :
 						<p>Author: { authorLoading ? <i>loading... </i> : author.name }</p>
 					}
-					<div>{ blog.body }</div>
-					<button onClick={ deleteBlog }>Delete</button>
+					<BlogDetailsContent>{ blog.body }</BlogDetailsContent>
+					<Button onClick={ deleteBlog }>Delete</Button>
 				</article>
 			}
-		</div>
+		</BlogDetailsDiv>
 	)
 }
 
