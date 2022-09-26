@@ -2,82 +2,97 @@ import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-	NewBlogButton,
-	NewBlogDiv,
-	NewBlogHeader,
-	NewBlogInput,
-	NewBlogLabel,
-	NewBlogSelect,
-	NewBlogTextarea
+  NewBlogButton,
+  NewBlogDiv,
+  NewBlogHeader,
+  NewBlogInput,
+  NewBlogLabel,
+  NewBlogSelect,
+  NewBlogTextarea,
 } from "./styles/NewBlog.styles";
 
 const NewBlog = () => {
-	const { data: authors, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users/');
-	const [title, setTitle] = useState('');
-	const [body, setBody] = useState('');
-	const [author, setAuthor] = useState('1');
-	const [postLoading, setPostLoading] = useState(false);
+  const {
+    data: authors,
+    loading,
+    error,
+  } = useFetch("https://jsonplaceholder.typicode.com/users/");
+  const [postLoading, setPostLoading] = useState(false);
+  const [formState, setFormState] = useState({
+    title: "",
+    body: "",
+    userId: "1",
+  });
 
-	const navigateFunction = useNavigate();
+  const handleFormChange = ({ target: { name, value } }) => {
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
-	const submitPost = (event) => {
-		event.preventDefault();
+  const navigateFunction = useNavigate();
 
-		setPostLoading(true);
+  const submitPost = (event) => {
+    event.preventDefault();
+    setPostLoading(true);
 
-		const blog = { title, body, userId: author };
+    fetch("https://jsonplaceholder.typicode.com/posts/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formState),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setPostLoading(false);
+        navigateFunction("/");
+      });
+  };
 
-		fetch('https://jsonplaceholder.typicode.com/posts/', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(blog)
-		})
-			.then((res) => res.json())
-			.then(() => {
-				setPostLoading(false);
-				navigateFunction('/');
-			});
-	}
+  return (
+    <NewBlogDiv>
+      <NewBlogHeader>Add A New Blog</NewBlogHeader>
+      <form onSubmit={submitPost}>
+        <NewBlogLabel>Title</NewBlogLabel>
+        <NewBlogInput
+          type="text"
+          name="title"
+          required
+          value={formState.title}
+          onChange={handleFormChange}
+        />
 
-	return (
-		<NewBlogDiv>
-			<NewBlogHeader>Add A New Blog</NewBlogHeader>
-			<form onSubmit={ submitPost }>
-				<NewBlogLabel>Title</NewBlogLabel>
-				<NewBlogInput
-					type="text"
-					required
-					value={ title }
-					onChange={ (event) => setTitle(event.target.value) }
-				/>
+        <NewBlogLabel>Body</NewBlogLabel>
+        <NewBlogTextarea
+          required
+          name="body"
+          value={formState.body}
+          onChange={handleFormChange}
+        ></NewBlogTextarea>
 
-				<NewBlogLabel>Body</NewBlogLabel>
-				<NewBlogTextarea
-					required
-					value={ body }
-					onChange={ (event) => setBody(event.target.value) }
-				></NewBlogTextarea>
+        <NewBlogLabel>Author</NewBlogLabel>
+        <NewBlogSelect
+          disabled={!!error || loading}
+          onChange={handleFormChange}
+          value={formState.userId}
+          name="userId"
+          required
+        >
+          {authors.map((author) => (
+            <option value={author.id} key={author.id}>
+              {author.name}
+            </option>
+          ))}
+        </NewBlogSelect>
 
-				<NewBlogLabel>Author</NewBlogLabel>
-				<NewBlogSelect
-					disabled={ !!error || loading }
-					onChange={ (event) => setAuthor(event.target.value) }
-					value={ author }
-					required
-				>
-					{
-						authors.map((author) => (
-							<option value={ author.id } key={ author.id }>{ author.name }</option>
-						))
-					}
-				</NewBlogSelect>
-
-				<NewBlogButton disabled={ postLoading }>{ postLoading ? 'loading... ' : 'Add Blog' }</NewBlogButton>
-			</form>
-		</NewBlogDiv>
-	);
-}
+        <NewBlogButton disabled={postLoading}>
+          {postLoading ? "loading... " : "Add Blog"}
+        </NewBlogButton>
+      </form>
+    </NewBlogDiv>
+  );
+};
 
 export default NewBlog;
