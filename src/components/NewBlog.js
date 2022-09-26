@@ -25,9 +25,6 @@ const NewBlog = () => {
   });
 
   const handleFormChange = ({ target: { name, value } }) => {
-    // Destructure the name and value from the onChange event object then,
-    // Set the formState object with the new value
-    // This makes this function re-usable and prevents you from initializing new state variables for each input
     setFormState({
       ...formState,
       [name]: value,
