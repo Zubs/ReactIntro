@@ -10,7 +10,10 @@ const useFetch = (url) => {
 
 		fetch(url, { signal: abortController.signal })
 			.then(response => {
-				if (response.status !== 200 && response.status !== 304) throw new Error('Unable to load data');
+				// response.ok is true if the response status is 200-299
+				if (!response.ok) 
+					throw new Error('Unable to load data');
+
 				return response.json()
 			})
 			.then(data => {
